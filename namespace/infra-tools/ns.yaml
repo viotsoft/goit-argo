@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: infra-tools
+  labels:
+    purpose: infra-tools
+  annotations:
+    # Namespace infra-tools первинно створює Terraform і в ньому живе сам Argo CD.
+    # Prune=false страхує від сценарію "видалили ns.yaml з Git -> Argo CD знищив
+    # namespace разом з власними подами".
+    argocd.argoproj.io/sync-options: Prune=false
